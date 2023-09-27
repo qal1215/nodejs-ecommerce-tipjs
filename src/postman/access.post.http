@@ -1,5 +1,0 @@
-### sign up
-POST http://localhost:3884/v1/api/shop/signup
-
-### ping
-GET http://localhost:3884/v1/api/shop/ping
