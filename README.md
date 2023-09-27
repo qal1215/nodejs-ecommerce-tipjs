@@ -10,7 +10,7 @@ npm i morgan --save-dev //Lib print log
 // app.use(morgan("tiny"));
 // app.use(morgan("combined"));
 
-npm i helmet --save-dev //secure by hidden tech stack
+npm i helmet -save //secure by hidden tech stack
 npm i compression // reduce data weight
 
 npm i mongoose -save

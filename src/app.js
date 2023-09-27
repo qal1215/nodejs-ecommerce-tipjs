@@ -15,12 +15,7 @@ require("./db/init.mongodb");
 // checkOverload();
 
 //init routes
-app.get("/", (req, res, next) => {
-  const strCompress = "Hello fan tipJS";
-  return res.status(200).json({
-    message: "Welcome to qal",
-  });
-});
+app.use("", require("./routes/index"));
 
 //handle error
 
