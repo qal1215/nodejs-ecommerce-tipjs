@@ -1,7 +1,12 @@
 "use strict";
-
 const mongoose = require("mongoose");
-const cntString = "mongodb://192.168.1.42:27017/demo";
+
+const {
+  db: { host, port, name },
+} = require("../configs/config.mongodb");
+const cntString = `mongodb://${host}:${port}/${name}`;
+
+console.log(cntString);
 const { countConnect } = require("../helpers/check.connect");
 
 class Database {
@@ -29,10 +34,10 @@ class Database {
   }
 
   static getInstance() {
-    if (!this.instance) {
-      this.instance = new Database();
+    if (!Database.instance) {
+      Database.instance = new Database();
     }
-    return this.instance;
+    return Database.instance;
   }
 }
 
