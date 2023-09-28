@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const KeyTokenService = require("./keyToken.service");
 const { createTokenPair } = require("../auth/authUtils");
+const { getInfoData } = require("../utils");
 
 const Roles = {
   SHOP: "shop",
@@ -19,7 +20,7 @@ class AccessService {
       // Check if email is already registered
       const holderShop = await shopModel.findOne({ email }).lean();
 
-      console.log(`[P]::signUp::holderShop::`, holderShop);
+      // console.log(`[P]::signUp::holderShop::`, holderShop);
 
       if (holderShop) {
         return {
@@ -30,7 +31,7 @@ class AccessService {
 
       const passwordHash = bcrypt.hashSync(password, 10);
 
-      console.log(`[P]::signUp::passwordHash::`, passwordHash);
+      // console.log(`[P]::signUp::passwordHash::`, passwordHash);
 
       // Create new shop
       const newShop = await shopModel.create({
@@ -40,7 +41,7 @@ class AccessService {
         roles: [Roles.SHOP],
       });
 
-      console.log(`[P]::signUp::newShop::`, newShop);
+      // console.log(`[P]::signUp::newShop::`, newShop);
 
       if (!newShop) {
         return {
@@ -49,25 +50,44 @@ class AccessService {
         };
       } else {
         // Create token
-        const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
-          modulusLength: 4096,
-        });
+        // const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
+        //   modulusLength: 4096,
+        //   publicKeyEncoding: {
+        //     type: "pkcs1",
+        //     format: "pem",
+        //   },
+        //   privateKeyEncoding: {
+        //     type: "pkcs1",
+        //     format: "pem",
+        //   },
+        // });
 
-        console.log({ privateKey, publicKey }); //
+        //Private key & Public key more basic
+        const privateKey = crypto.randomBytes(64).toString("hex");
+        const publicKey = crypto.randomBytes(64).toString("hex");
+
+        // console.log({ privateKey, publicKey }); //
+        // console.log(`[P]::signUp::privateKey::`, privateKey);
+        // console.log(`[P]::signUp::publicKey::`, publicKey);
 
         // Save token to database
-
-        const publicKeyString = await KeyTokenService.createKeyToken({
+        const keyStore = await KeyTokenService.createKeyToken({
           userId: newShop._id,
+          privateKey,
           publicKey,
         });
 
-        if (!publicKeyString) {
+        if (!keyStore) {
           return {
             code: "xxxx",
-            message: "Error creating public key",
+            message: "Key store error",
           };
         }
+
+        // Check if token is saved
+        // console.log(`[P]::signUp::publicKeyString::`, publicKeyString);
+        // const publicKeyObject = crypto.createPublicKey(publicKeyString);
+        // console.log(`[P]::signUp::publicKeyObject::`, publicKeyObject);
 
         // Create token pair
         const tokens = await createTokenPair(
@@ -75,13 +95,24 @@ class AccessService {
           publicKey,
           privateKey
         );
+
+        if (tokens.status === "error") {
+          return {
+            code: "xxxx",
+            message: tokens.message,
+          };
+        }
+
         console.log(`Create Tokens Success::`, tokens);
 
         //Return response with token
         return {
           code: 201,
           metadata: {
-            shop: newShop,
+            shop: getInfoData({
+              fields: ["_id", "name", "email"],
+              object: newShop,
+            }),
             tokens,
           },
         };
