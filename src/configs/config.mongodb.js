@@ -21,7 +21,9 @@ const dev = {
   db: {
     host: process.env.DEV_DB_HOST || "localhost",
     port: process.env.DEV_DB_PORT || 27017,
-    name: process.env.DEV_DB_NAME || "testDev",
+    name: process.env.DEV_DB_NAME || "shopDev",
+    user: process.env.DEV_DB_USER || "root",
+    pass: process.env.DEV_DB_PASS || "root",
   },
 };
 
@@ -33,6 +35,8 @@ const prod = {
     host: process.env.PROD_DB_HOST || "localhost",
     port: process.env.PROD_DB_PORT || 27017,
     name: process.env.PROD_DB_NAME || "testProd",
+    user: process.env.PROD_DB_USER || "root",
+    pass: process.env.PROD_DB_PASS || "root",
   },
 };
 

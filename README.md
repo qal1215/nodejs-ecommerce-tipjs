@@ -1,6 +1,6 @@
 # Packages
 
-npm i express -save
+npm i express --save
 
 npm i morgan --save-dev //Lib print log
 
@@ -10,7 +10,10 @@ npm i morgan --save-dev //Lib print log
 // app.use(morgan("tiny"));
 // app.use(morgan("combined"));
 
-npm i helmet -save //secure by hidden tech stack
+npm i helmet --save //secure by hidden tech stack
 npm i compression // reduce data weight
 
-npm i mongoose -save
+npm i mongoose --save
+npm i bcrypt --save
+npm i crypto --save
+npm i jsonwebtoken --save

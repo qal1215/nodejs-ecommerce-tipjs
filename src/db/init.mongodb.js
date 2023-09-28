@@ -2,8 +2,9 @@
 const mongoose = require("mongoose");
 
 const {
-  db: { host, port, name },
+  db: { user, pass, host, port, name },
 } = require("../configs/config.mongodb");
+const passEncode = encodeURIComponent(pass);
 const cntString = `mongodb://${host}:${port}/${name}`;
 
 console.log(cntString);
