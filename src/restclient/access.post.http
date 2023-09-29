@@ -3,6 +3,7 @@
 ### sign up
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
+x-api-key: 69e3d79584fc6f8c03b4ea5fae7f9cecbfdef181c3630e89ac048464ae0798e0887e4a7407011dcd2485f3629dc2924fe4385f3b74359db4b0594f80e7153723
 
 {
     "name":"Concung",
