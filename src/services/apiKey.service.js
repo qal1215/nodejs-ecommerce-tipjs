@@ -14,7 +14,6 @@ const generateKey = async () => {
     key: keyString,
     permissions: ["000"],
   });
-  console.log(`[P]::findById::newKey::`, newKey);
 };
 
 module.exports = {

@@ -3,11 +3,11 @@
 ### sign up
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
-x-api-key: 69e3d79584fc6f8c03b4ea5fae7f9cecbfdef181c3630e89ac048464ae0798e0887e4a7407011dcd2485f3629dc2924fe4385f3b74359db4b0594f80e7153723
+x-api-key: 7fddd81f21b4ba3524959dd1a3b953e55bb66a981917bebfebd2c896eaeff513f4c265d0cf109081a942ab619550c8c89709340564d015b38c4b6dbe39e237a9
 
 {
     "name":"Concung",
-    "email":"concung3@example.com",
+    "email":"concung5@example.com",
     "password":"12345678asdasd"
 }
 
