@@ -1,16 +1,25 @@
 @url_dev=http://localhost:3884/v1/api
 
+GET {{url_dev}}/getApiKey
+
 ### sign up
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
-x-api-key: 7fddd81f21b4ba3524959dd1a3b953e55bb66a981917bebfebd2c896eaeff513f4c265d0cf109081a942ab619550c8c89709340564d015b38c4b6dbe39e237a9
+x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
 
 {
     "name":"Concung",
-    "email":"concung09@example.com",
+    "email":"concung1@example.com",
     "password":"12345678asdasd"
 }
 
 
 ### ping
-GET {{url_dev}}/shop/ping
+POST {{url_dev}}/shop/login
+Content-Type: application/json
+x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+
+{
+    "email":"concung1@example.com",
+    "password":"12345678asdasd"
+}

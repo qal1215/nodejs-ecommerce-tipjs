@@ -2,10 +2,11 @@
 
 const express = require("express");
 const accessController = require("../../controllers/access.controller");
-const { handlerAsync } = require("../../auth/checkAuth");
+const { asyncHandler } = require("../../auth/checkAuth");
 const router = express.Router();
 
 //signup
-router.post("/shop/signup", handlerAsync(accessController.signUp));
+router.post("/shop/signup", asyncHandler(accessController.signUp));
+router.post("/shop/login", asyncHandler(accessController.logIn));
 
 module.exports = router;
