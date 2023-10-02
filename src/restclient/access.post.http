@@ -14,7 +14,7 @@ x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8
 }
 
 
-### ping
+### login
 POST {{url_dev}}/shop/login
 Content-Type: application/json
 x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
@@ -23,3 +23,10 @@ x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8
     "email":"concung1@example.com",
     "password":"12345678asdasd"
 }
+
+### logout
+POST {{url_dev}}/shop/logout
+x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+x-client-id: 651996729a2e58d24f4c0220
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2MjYyNTYxLCJleHAiOjE2OTY0MzUzNjF9.79E8ukIjpyD1mqzAGAClMWJFA2OINthHm4T92LpYmiI
+

@@ -1,11 +1,7 @@
 "use strict";
 
-const { findById } = require("../services/apikey.service");
-
-const HEADER_NAME = {
-  API_KEY: "x-api-key",
-  AUTHORIZATION: "authorization",
-};
+const { HEADER_NAME } = require("../constant/header/headerName");
+const { findById } = require("../services/apiKey.service");
 
 const apiKey = async (req, res, next) => {
   try {
@@ -55,12 +51,7 @@ const permissions = (permission) => {
   };
 };
 
-const asyncHandler = (fn) => (req, res, next) => {
-  return fn(req, res, next).catch(next);
-};
-
 module.exports = {
   apiKey,
   permissions,
-  asyncHandler,
 };
