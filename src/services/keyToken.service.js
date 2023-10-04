@@ -24,7 +24,6 @@ class KeyTokenService {
       const update = {
         privateKey,
         publicKey,
-        refreshTokensUsed: [],
         refreshToken,
       };
       const options = { upsert: true, new: true };
@@ -60,6 +59,22 @@ class KeyTokenService {
 
   static deleteKeyTokenByUserId = async (userId) =>
     await keyTokenModel.deleteOne({ user: userId }).lean();
+
+  static deleteToRenewerKeyToken = async (userId, refreshToken) => {
+    console.log("userId::", userId);
+    const filter = { user: userId };
+
+    const update = {
+      $push: { refreshTokensUsed: refreshToken },
+      refreshToken: null,
+      privateKey: null,
+      publicKey: null,
+    };
+
+    const tokens = await keyTokenModel.findOneAndUpdate(filter, update).lean();
+
+    return tokens ? true : false;
+  };
   //#endregion
 }
 

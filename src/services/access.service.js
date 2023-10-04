@@ -157,9 +157,16 @@ class AccessService {
   };
 
   static logOut = async (keyStore) => {
-    const delKey = await KeyTokenService.deleteKeyToken(keyStore._id);
+    console.log("keyStore::", keyStore);
+
+    // const delKey = await KeyTokenService.deleteKeyToken(keyStore._id);
+    const delKey = await KeyTokenService.deleteToRenewerKeyToken(
+      keyStore.user,
+      keyStore.refreshToken
+    );
+
     console.log("delKey::", delKey);
-    return delKey;
+    return delKey ? "Log out success" : "Log out failed";
   };
 
   /*
@@ -180,7 +187,7 @@ class AccessService {
       console.log(`payload::`, userId, email);
 
       // Delete key token
-      await KeyTokenService.deleteKeyTokenByUserId(userId);
+      await KeyTokenService.deleteToRenewerKeyToken(userId, refreshToken);
       throw new ForbiddenError("Token is used");
     }
 

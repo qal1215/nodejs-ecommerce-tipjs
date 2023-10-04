@@ -45,22 +45,30 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
   6. Ok => next()
   */
 const authentication = asyncHandler(async (req, res, next) => {
+  //#region Check HEADER
   const userId = req.headers[HEADER_NAME.CLIENT_ID];
   if (!userId) throw new UnauthorizedError("Missing userId");
 
-  const keyStore = await findByUserId(userId);
-
-  if (!keyStore) throw new NotFoundError("Missing keyStore");
-
   const accessToken = req.headers[HEADER_NAME.AUTHORIZATION];
   if (!accessToken) throw new UnauthorizedError("Missing access token");
+  //#endregion End Check HEADER
 
   try {
-    console.log(`keyStore.publicKey::`, keyStore.publicKey);
+    const keyStore = await findByUserId(userId);
+    if (!keyStore) throw new NotFoundError("Missing keyStore");
+
+    const { publicKey, privateKey, refreshToken } = keyStore;
+    if (!publicKey || !privateKey || !refreshToken) {
+      throw new UnauthorizedError("Log in first please");
+    }
 
     const decoded = await JWT.verify(accessToken, keyStore.publicKey, {
       ignoreExpiration: true,
+      allowInvalidAsymmetricKeyTypes: true,
     });
+
+    if (decoded.userId !== userId)
+      throw new UnauthorizedError("Invalid access token");
 
     if (decoded.exp < Date.now() / 1000) {
       if (req.body.refreshToken) {
@@ -78,14 +86,11 @@ const authentication = asyncHandler(async (req, res, next) => {
       }
     }
 
-    if (decoded.userId !== userId)
-      throw new UnauthorizedError("Invalid access token");
-
     req.keyStore = keyStore;
 
     return next();
   } catch (err) {
-    throw err;
+    throw new UnauthorizedError(err.message);
   }
 });
 
