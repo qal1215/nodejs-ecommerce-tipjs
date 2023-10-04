@@ -33,6 +33,13 @@ class AccessController {
       },
     }).send(res);
   };
+
+  refreshToken = async (req, res, next) => {
+    new OK({
+      message: "Refresh token successfully",
+      metaData: await AccessService.refreshToken(req.body.refreshToken),
+    }).send(res);
+  };
 }
 
 module.exports = new AccessController();

@@ -42,11 +42,25 @@ class KeyTokenService {
     }
   };
 
+  //#region Find
   static findByUserId = async (userId) =>
     await keyTokenModel.findOne({ user: userId }).lean();
 
+  static findByRefreshTokenUsed = async (refreshTokensUsed) =>
+    await keyTokenModel.findOne({ refreshTokensUsed }).lean();
+
+  static findByRefreshToke = async (refreshToken) =>
+    await keyTokenModel.findOne({ refreshToken });
+
+  //#endregion
+
+  //#region Delete
   static deleteKeyToken = async (_id) =>
     await keyTokenModel.deleteOne({ _id: new Types.ObjectId(_id) }).lean();
+
+  static deleteKeyTokenByUserId = async (userId) =>
+    await keyTokenModel.deleteOne({ user: userId }).lean();
+  //#endregion
 }
 
 module.exports = KeyTokenService;

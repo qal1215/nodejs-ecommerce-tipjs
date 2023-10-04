@@ -10,7 +10,7 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
   try {
     //access token
     const accessToken = await JWT.sign(payload, publicKey, {
-      expiresIn: "2 days",
+      expiresIn: "1 minutes",
     });
 
     const refreshToken = await JWT.sign(payload, privateKey, {
@@ -56,7 +56,28 @@ const authentication = asyncHandler(async (req, res, next) => {
   if (!accessToken) throw new UnauthorizedError("Missing access token");
 
   try {
-    const decoded = await JWT.verify(accessToken, keyStore.publicKey);
+    console.log(`keyStore.publicKey::`, keyStore.publicKey);
+
+    const decoded = await JWT.verify(accessToken, keyStore.publicKey, {
+      ignoreExpiration: true,
+    });
+
+    if (decoded.exp < Date.now() / 1000) {
+      if (req.body.refreshToken) {
+        const decodedRefreshToken = await JWT.verify(
+          req.body.refreshToken,
+          keyStore.privateKey,
+          {
+            ignoreExpiration: true,
+          }
+        );
+        if (decodedRefreshToken.exp < Date.now() / 1000)
+          throw new UnauthorizedError("RefreshToken expired");
+      } else {
+        throw new UnauthorizedError("Token expired");
+      }
+    }
+
     if (decoded.userId !== userId)
       throw new UnauthorizedError("Invalid access token");
 
@@ -68,4 +89,7 @@ const authentication = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { createTokenPair, authentication };
+const verifyRefreshToken = async (refreshToken, keySecret) =>
+  await JWT.verify(refreshToken, keySecret);
+
+module.exports = { createTokenPair, authentication, verifyRefreshToken };

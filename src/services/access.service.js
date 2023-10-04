@@ -2,11 +2,12 @@
 
 const shopModel = require("../models/shop.model");
 const bcrypt = require("bcrypt");
-const { createTokenPair } = require("../auth/authUtils");
+const { createTokenPair, verifyRefreshToken } = require("../auth/authUtils");
 const { getInfoData, getPrivateAndPublicKey } = require("../utils");
 const {
   BadRequestError,
   UnauthorizedError,
+  ForbiddenError,
 } = require("../core/error.response");
 
 // Service
@@ -159,6 +160,65 @@ class AccessService {
     const delKey = await KeyTokenService.deleteKeyToken(keyStore._id);
     console.log("delKey::", delKey);
     return delKey;
+  };
+
+  /*
+    check this token is used or not
+  */
+
+  static refreshToken = async (refreshToken) => {
+    const foundToken = await KeyTokenService.findByRefreshTokenUsed(
+      refreshToken
+    );
+    if (foundToken) {
+      // Check verify user token
+      const { userId, email } = await verifyRefreshToken(
+        refreshToken,
+        foundToken.privateKey
+      );
+
+      console.log(`payload::`, userId, email);
+
+      // Delete key token
+      await KeyTokenService.deleteKeyTokenByUserId(userId);
+      throw new ForbiddenError("Token is used");
+    }
+
+    const holderToken = await KeyTokenService.findByRefreshToke(refreshToken);
+    if (!holderToken) {
+      throw new BadRequestError("Token is not exist");
+    }
+
+    // Verify token
+    const { userId, email } = await verifyRefreshToken(
+      refreshToken,
+      holderToken.privateKey
+    );
+
+    // Check shop is exist
+    const foundShop = await findByEmail({ email });
+    if (!foundShop) throw new BadRequestError("Shop is not exist");
+    // Generate public key and private key
+
+    const tokens = await createTokenPair(
+      { userId: foundShop._id, email },
+      holderToken.publicKey,
+      holderToken.privateKey
+    );
+
+    // Save key token
+    await holderToken.updateOne({
+      refreshToken: tokens.refreshToken,
+      refreshTokensUsed: [...holderToken.refreshTokensUsed, refreshToken],
+    });
+
+    return {
+      user: {
+        userId,
+        email,
+      },
+      tokens,
+    };
   };
 }
 

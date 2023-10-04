@@ -9,7 +9,7 @@ x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8
 
 {
     "name":"Concung",
-    "email":"concung1@example.com",
+    "email":"concung2@example.com",
     "password":"12345678asdasd"
 }
 
@@ -24,9 +24,25 @@ x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8
     "password":"12345678asdasd"
 }
 
+### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDM3MzA5LCJleHAiOjE2OTY2MTAxMDl9.HsLlMSioNwQl-pF1LKBy3Al7GtlciOAFAf6RX_HpLKs
 ### logout
 POST {{url_dev}}/shop/logout
+Content-Type: application/json
 x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
 x-client-id: 651996729a2e58d24f4c0220
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2MjYyNTYxLCJleHAiOjE2OTY0MzUzNjF9.79E8ukIjpyD1mqzAGAClMWJFA2OINthHm4T92LpYmiI
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDM5Njc5LCJleHAiOjE2OTY0Mzk3Mzl9.bwr1oeo58SZknsGoP5R24-IlRgA4Zqv-aquoEfmbndk
 
+{
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDM5Njc5LCJleHAiOjE2OTcwNDQ0Nzl9.blcIMu8cQ212aEeDfe3V-Qx-8V2EBUVg1boZPdOvxKQ"
+}
+
+### refresh token
+POST {{url_dev}}/shop/refresh-token
+Content-Type: application/json
+x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+x-client-id: 651996729a2e58d24f4c0220
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDM5Njc5LCJleHAiOjE2OTY0Mzk3Mzl9.bwr1oeo58SZknsGoP5R24-IlRgA4Zqv-aquoEfmbndk
+
+{
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDM5Njc5LCJleHAiOjE2OTcwNDQ0Nzl9.blcIMu8cQ212aEeDfe3V-Qx-8V2EBUVg1boZPdOvxKQ"
+}
