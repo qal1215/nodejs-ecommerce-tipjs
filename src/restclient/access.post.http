@@ -5,7 +5,7 @@ GET {{url_dev}}/getApiKey
 ### sign up
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
-x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
 
 {
     "name":"Concung",
@@ -17,10 +17,10 @@ x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8
 ### login
 POST {{url_dev}}/shop/login
 Content-Type: application/json
-x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
 
 {
-    "email":"concung1@example.com",
+    "email":"concung2@example.com",
     "password":"12345678asdasd"
 }
 
@@ -28,7 +28,7 @@ x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8
 ### logout
 POST {{url_dev}}/shop/logout
 Content-Type: application/json
-x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
 x-client-id: 651996729a2e58d24f4c0220
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDQ2MzE2LCJleHAiOjE2OTY0NDYzNzZ9.uLF32fBIWd5UzSO0oaOq5cPCw8cvpz_4I4mPI4Q1w8A
 
@@ -39,7 +39,7 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3Mjlh
 ### refresh token
 POST {{url_dev}}/shop/refresh-token
 Content-Type: application/json
-x-api-key: 69ad2d70b7e517bbca2d8f56c8fe1b72ae63ff8f3845bc9e8290513bec385034c76e8f6ea6687379fb75ef26c75c495806062f491ae50bfadcd13a2eccd46f02
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
 x-client-id: 651996729a2e58d24f4c0220
 authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDQ2MzE2LCJleHAiOjE2OTY0NDYzNzZ9.uLF32fBIWd5UzSO0oaOq5cPCw8cvpz_4I4mPI4Q1w8A
 

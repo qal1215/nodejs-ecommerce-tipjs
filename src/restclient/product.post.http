@@ -1,0 +1,21 @@
+@url_dev=http://localhost:3884/v1/api
+@api_key=0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+
+POST {{url_dev}}/product
+Content-Type: application/json
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+
+{
+    "product_name": "Pants Jeans",
+    "product_description": "Description 1",
+    "product_price": 100.00,
+    "product_shop": "651eff2921a525fef8bc71ec",
+    "product_quantity": 10,
+    "product_type": "Clothing",
+    "product_thumb":"product_thumb.jpg",
+    "product_attributes":{
+        "brand":"Levis",
+        "size":"M",
+        "material":"Cotton"
+    }
+}
