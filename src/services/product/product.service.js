@@ -1,26 +1,11 @@
 "use strict";
 
-const { BadRequestError } = require("../core/error.response");
+const { BadRequestError } = require("../../core/error.response");
 const {
   product,
   clothing,
   electronic,
-} = require("../models/products/product.model");
-
-class ProductFactory {
-  static async createProduct(product, product_type) {
-    switch (product_type) {
-      case "Clothing":
-        return await new Clothing(product).createProduct();
-      case "Electronic":
-        return await new Electronic(product).createProduct();
-      default:
-        throw new BadRequestError("Product type is not supported");
-    }
-  }
-}
-
-// define base product type
+} = require("../../models/products/product.model");
 
 class Product {
   constructor({
@@ -44,19 +29,22 @@ class Product {
   }
 
   // create product
-  async createProduct() {
-    return await product.create(this);
+  async createProduct(product_id) {
+    return await product.create({ ...this, _id: product_id });
   }
 }
 
 // define the subclass for clothing, electronics,...
 class Clothing extends Product {
   async createProduct() {
-    const newClothing = await clothing.create(this.product_attributes);
+    const newClothing = await clothing.create({
+      ...this.product_attributes,
+      product_shop: this.product_shop,
+    });
     if (!newClothing)
       throw new BadRequestError("Clothing could not be created");
 
-    const newProduct = await super.createProduct();
+    const newProduct = await super.createProduct(newClothing._id);
     if (!newProduct) throw new BadRequestError("Product could not be created");
 
     return newProduct;
@@ -65,15 +53,18 @@ class Clothing extends Product {
 
 class Electronic extends Product {
   async createProduct() {
-    const newElectronic = await electronic.create(this.product_attributes);
+    const newElectronic = await electronic.create({
+      ...this.product_attributes,
+      product_shop: this.product_shop,
+    });
     if (!newElectronic)
       throw new BadRequestError("Electronic could not be created");
 
-    const newProduct = await super.createProduct();
+    const newProduct = await super.createProduct(newElectronic._id);
     if (!newProduct) throw new BadRequestError("Product could not be created");
 
     return newProduct;
   }
 }
 
-module.exports = ProductFactory;
+module.exports = { Product, Clothing, Electronic };

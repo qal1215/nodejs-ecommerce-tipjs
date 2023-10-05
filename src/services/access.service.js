@@ -157,9 +157,8 @@ class AccessService {
   };
 
   static logOut = async (keyStore) => {
-    console.log("keyStore::", keyStore);
+    console.log("accessService::logOut::keyStore::", keyStore);
 
-    // const delKey = await KeyTokenService.deleteKeyToken(keyStore._id);
     const delKey = await KeyTokenService.deleteToRenewerKeyToken(
       keyStore.user,
       keyStore.refreshToken
@@ -214,10 +213,12 @@ class AccessService {
     );
 
     // Save key token
-    await holderToken.updateOne({
-      refreshToken: tokens.refreshToken,
-      refreshTokensUsed: [...holderToken.refreshTokensUsed, refreshToken],
-    });
+    holderToken
+      .updateOne({
+        refreshToken: tokens.refreshToken,
+        refreshTokensUsed: [...holderToken.refreshTokensUsed, refreshToken],
+      })
+      .lean();
 
     return {
       user: {
