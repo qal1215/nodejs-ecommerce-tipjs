@@ -1,0 +1,6 @@
+{
+  "sonarlint.connectedMode.project": {
+    "connectionId": "nodejs-ecommerce-tipjs",
+    "projectKey": "nodejs-ecomerce"
+  }
+}

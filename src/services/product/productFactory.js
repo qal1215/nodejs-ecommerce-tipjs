@@ -1,5 +1,3 @@
-const { Clothing, Electronic } = require("./product.service");
-
 class ProductFactory {
   static productRegistry = {};
 
@@ -15,7 +13,6 @@ class ProductFactory {
   }
 }
 
-ProductFactory.productRegistry = {
-  Clothing,
-  Electronic,
-};
+ProductFactory.productRegistry = require("./product.config");
+
+module.exports = ProductFactory;
