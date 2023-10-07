@@ -18,3 +18,4 @@ npm i bcrypt --save
 npm i crypto --save
 npm i jsonwebtoken --save
 npm i lodash --save
+npm i slugify --save
