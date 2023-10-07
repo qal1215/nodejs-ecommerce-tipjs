@@ -1,11 +1,7 @@
 "use strict";
 
 const { BadRequestError } = require("../../core/error.response");
-const {
-  product,
-  clothing,
-  electronic,
-} = require("../../models/products/product.model");
+const { product, clothing, electronic } = require("../../models/product.model");
 
 class Product {
   constructor({

@@ -6,6 +6,17 @@ const { authentication } = require("../../auth/authUtils");
 const productController = require("../../controllers/product.controller");
 const router = express.Router();
 
+/**
+ * @description: Search products
+ * @method: GET
+ * @path: /api/v1/product/search?q=keyword
+ * @access: public
+ * @returns: {object} status: 200, message: All products fetched successfully, metaData: {products: []}
+ * @returns: {object} status: 400, message: Bad request, metaData: null
+ *
+ */
+router.get("/search", asyncHandler(productController.searchPublishedProducts));
+
 // authentication
 router.use(authentication);
 

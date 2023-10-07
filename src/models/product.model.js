@@ -74,6 +74,8 @@ const productSchema = new Schema(
   }
 );
 
+// Indexes
+productSchema.index({ product_name: "text", product_description: "text" });
 // Middleware to update slug
 productSchema.pre("save", function (next) {
   this.product_slug = slugify(this.product_name, { lower: true });

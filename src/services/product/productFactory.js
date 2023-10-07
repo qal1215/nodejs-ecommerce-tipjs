@@ -65,6 +65,10 @@ class ProductFactory {
     });
   }
 
+  static async searchPublishedProducts({ query, limit = 60, offset = 0 }) {
+    return await ProductRepository.searchProducts(query);
+  }
+
   //#endregion
 }
 

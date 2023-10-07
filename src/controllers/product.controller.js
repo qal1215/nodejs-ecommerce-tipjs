@@ -61,6 +61,17 @@ class ProductController {
       },
     }).send(res);
   };
+
+  searchPublishedProducts = async (req, res, next) => {
+    new SuccessResponse({
+      message: "All published products fetched successfully",
+      metaData: {
+        products: await ProductFactory.searchPublishedProducts({
+          query: req.query.q,
+        }),
+      },
+    }).send(res);
+  };
 }
 
 module.exports = new ProductController();

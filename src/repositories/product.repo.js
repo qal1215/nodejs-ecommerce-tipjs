@@ -1,22 +1,19 @@
 "use strict";
 
 const { Types } = require("mongoose");
-const {
-  product,
-  electronic,
-  clothing,
-} = require("../models/products/product.model");
+const { product, electronic, clothing } = require("../models/product.model");
 
 class ProductRepository {
   static async queryProduct({
     query,
+    projection = {},
     limit = 50,
     offset = 0,
     sort = { updateAt: -1 },
     select = null,
   }) {
     return await product
-      .find(query)
+      .find(query, projection)
       .populate("product_shop", "name email -_id")
       .select(select)
       .sort(sort)
@@ -24,6 +21,22 @@ class ProductRepository {
       .skip(offset)
       .lean()
       .exec();
+  }
+
+  static async searchProducts(keyword) {
+    const regexSearch = new RegExp(keyword);
+
+    const query = {
+      $text: { $search: regexSearch },
+    };
+
+    const projection = {
+      score: { $meta: "textScore" },
+    };
+
+    const sort = { score: { $meta: "textScore" } };
+
+    return await this.queryProduct({ query, projection, sort });
   }
 
   static async findAllDraftsForShop({ query, limit, offset }) {
