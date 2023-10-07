@@ -56,6 +56,21 @@ class ProductRepository {
       .lean()
       .exec();
   }
+
+  static async unpublishProduct({ product_shop, product_id }) {
+    return await product
+      .findOneAndUpdate(
+        {
+          _id: new Types.ObjectId(product_id),
+          product_shop: new Types.ObjectId(product_shop),
+        },
+        { isDaft: true, isPublished: false },
+        { new: false, upsert: true }
+      )
+      .populate("product_shop", "name email -_id")
+      .lean()
+      .exec();
+  }
 }
 
 module.exports = ProductRepository;

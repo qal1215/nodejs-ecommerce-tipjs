@@ -9,13 +9,7 @@ const router = express.Router();
 // authentication
 router.use(authentication);
 
-// logout
-router.post("/", asyncHandler(productController.createProduct));
-router.patch(
-  "/publish/:id",
-  asyncHandler(productController.publishProductByShop)
-);
-
+//#region GET
 /**
  * @description: Get all draft products for shop
  * @method: GET
@@ -30,5 +24,35 @@ router.get(
   "/published",
   asyncHandler(productController.findAllPublishedForShop)
 );
+//#endregion
+
+//#region CREATE - UPDATE - DELETE
+/**
+ * @description: Create a product
+ * @method: POST
+ * @path: /api/v1/product
+ */
+router.post("/", asyncHandler(productController.createProduct));
+
+/**
+ * @description: Publish a product
+ * @method: PATCH
+ * @path: /api/v1/product/publish/:id
+ */
+router.patch(
+  "/publish/:id",
+  asyncHandler(productController.publishProductByShop)
+);
+
+/**
+ * @description: Unpublish a product
+ * @method: PATCH
+ * @path: /api/v1/product/unpublish/:id
+ */
+router.patch(
+  "/unpublish/:id",
+  asyncHandler(productController.unpublishProductByShop)
+);
+//#endregion
 
 module.exports = router;

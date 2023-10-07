@@ -33,6 +33,13 @@ class ProductFactory {
       product_id,
     });
   }
+
+  static async unpublishProductByShop({ product_shop, product_id }) {
+    return await ProductRepository.unpublishProduct({
+      product_shop,
+      product_id,
+    });
+  }
   //#endregion
 
   //#region GET

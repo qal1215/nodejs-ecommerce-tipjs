@@ -1,6 +1,11 @@
 @url_dev=http://localhost:3884/v1/api/product
-@api_key=0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+@x-api-key=0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+@authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NjgxNjYyLCJleHAiOjE2OTY3NjgwNjJ9.g5vKSMpFdWt7STMeHGTZiUR68GSBeAv8myEh42oqoyE
+@x-client-id=651eff2921a525fef8bc71ec
 
+
+
+### Create product
 POST {{url_dev}}
 Content-Type: application/json
 x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
@@ -23,7 +28,16 @@ x-client-id: 651eff2921a525fef8bc71ec
 }
 
 ### Publish product by shop
-PATCH  {{url_dev}}/publish/
+PATCH  {{url_dev}}/publish/65214ef2c67cff2b2bbdcf68
+x-api-key: {{x-api-key}}
+authorization: {{authorization}}
+x-client-id: {{x-client-id}}
+
+### Unpublish product by shop
+PATCH  {{url_dev}}/unpublish/65214ef2c67cff2b2bbdcf68
+x-api-key: {{x-api-key}}
+authorization: {{authorization}}
+x-client-id: {{x-client-id}}
 
 ### Gett all draft products
 GET  {{url_dev}}/drafts
@@ -33,6 +47,6 @@ x-client-id: 651eff2921a525fef8bc71ec
 
 ### Gett all published products
 GET  {{url_dev}}/published
-x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NjgxNjYyLCJleHAiOjE2OTY3NjgwNjJ9.g5vKSMpFdWt7STMeHGTZiUR68GSBeAv8myEh42oqoyE
-x-client-id: 651eff2921a525fef8bc71ec
+x-api-key: {{x-api-key}}
+authorization: {{authorization}}
+x-client-id: {{x-client-id}}
