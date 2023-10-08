@@ -212,13 +212,10 @@ class AccessService {
       holderToken.privateKey
     );
 
-    // Save key token
-    holderToken
-      .updateOne({
-        refreshToken: tokens.refreshToken,
-        refreshTokensUsed: [...holderToken.refreshTokensUsed, refreshToken],
-      })
-      .lean();
+    holderToken.refreshTokensUsed.push(refreshToken);
+    holderToken.refreshToken = tokens.refreshToken;
+
+    holderToken.save();
 
     return {
       user: {

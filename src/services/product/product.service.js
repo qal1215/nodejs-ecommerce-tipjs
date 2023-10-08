@@ -10,6 +10,7 @@ class Product {
     product_description,
     product_price,
     product_quantity,
+    product_variations,
     product_type,
     product_shop,
     product_attributes,
@@ -22,6 +23,7 @@ class Product {
     this.product_type = product_type;
     this.product_shop = product_shop;
     this.product_attributes = product_attributes;
+    this.product_variations = product_variations;
   }
 
   // create product

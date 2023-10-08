@@ -30,7 +30,8 @@ class KeyTokenService {
 
       const tokens = await keyTokenModel
         .findOneAndUpdate(filter, update, options)
-        .lean();
+        .lean()
+        .exec();
 
       return tokens ? tokens.publicKey : null;
     } catch (err) {
@@ -43,37 +44,51 @@ class KeyTokenService {
 
   //#region Find
   static findByUserId = async (userId) =>
-    await keyTokenModel.findOne({ user: userId }).lean();
+    await keyTokenModel.findOne({ user: userId }).lean().exec();
 
   static findByRefreshTokenUsed = async (refreshTokensUsed) =>
-    await keyTokenModel.findOne({ refreshTokensUsed }).lean();
+    await keyTokenModel.findOne({ refreshTokensUsed }).lean().exec();
 
   static findByRefreshToke = async (refreshToken) =>
-    await keyTokenModel.findOne({ refreshToken });
+    await keyTokenModel.findOne({ refreshToken }).exec();
 
   //#endregion
 
   //#region Delete
   static deleteKeyToken = async (_id) =>
-    await keyTokenModel.deleteOne({ _id: new Types.ObjectId(_id) }).lean();
+    await keyTokenModel
+      .deleteOne({ _id: new Types.ObjectId(_id) })
+      .lean()
+      .exec();
 
   static deleteKeyTokenByUserId = async (userId) =>
-    await keyTokenModel.deleteOne({ user: userId }).lean();
+    await keyTokenModel.deleteOne({ user: userId }).lean().exec();
 
   static deleteToRenewerKeyToken = async (userId, refreshToken) => {
-    console.log("userId::", userId);
-    const filter = { user: userId };
+    const userToken = await keyTokenModel.findOne({ user: userId }).exec();
 
-    const update = {
-      $push: { refreshTokensUsed: refreshToken },
-      refreshToken: null,
-      privateKey: null,
-      publicKey: null,
-    };
+    if (!userToken) return null;
 
-    const tokens = await keyTokenModel.findOneAndUpdate(filter, update).lean();
+    userToken.refreshTokensUsed.push(refreshToken);
+    userToken.refreshToken = null;
+    userToken.privateKey = null;
+    userToken.publicKey = null;
+    userToken.save();
 
-    return tokens ? true : false;
+    return userToken;
+
+    // const filter = { user: userId };
+    // const update = {
+    //   $push: { refreshTokensUsed: refreshToken },
+    //   refreshToken: null,
+    //   privateKey: null,
+    //   publicKey: null,
+    // };
+    // const tokens = await keyTokenModel
+    //   .findOneAndUpdate(filter, update)
+    //   .lean()
+    //   .exec();
+    // return tokens;
   };
   //#endregion
 }

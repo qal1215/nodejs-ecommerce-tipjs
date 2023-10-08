@@ -14,11 +14,9 @@ const keyTokenSchema = new Schema(
     },
     privateKey: {
       type: String,
-      required: true,
     },
     publicKey: {
       type: String,
-      required: true,
     },
     refreshTokensUsed: {
       type: Array,
@@ -26,7 +24,6 @@ const keyTokenSchema = new Schema(
     },
     refreshToken: {
       type: String,
-      required: true,
     },
   },
   {

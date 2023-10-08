@@ -1,14 +1,14 @@
 "use strict";
 const mongoose = require("mongoose");
-
-const {
-  db: { user, pass, host, port, name },
-} = require("../configs/config.mongodb");
-const passEncode = encodeURIComponent(pass);
-const cntString = `mongodb://${host}:${port}/${name}`;
-
-console.log(cntString);
 const { countConnect } = require("../helpers/check.connect");
+const {
+  db: { host, port, name },
+} = require("../configs/config.mongodb");
+
+const cntString = `mongodb://${host}:${port}/${name}`;
+console.log(cntString);
+
+const process = require("process");
 
 class Database {
   constructor() {
@@ -16,9 +16,10 @@ class Database {
   }
 
   _connect(type = "mongodb") {
-    if (1 === 1) {
-      mongoose.set("debug", true);
-      mongoose.set("debug", { color: true });
+    const env = process.env.NODE_ENV || "dev";
+
+    if (env === "dev") {
+      mongoose.set("debug", { color: true, shell: true });
     }
 
     mongoose

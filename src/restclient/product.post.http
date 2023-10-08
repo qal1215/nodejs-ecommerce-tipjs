@@ -1,7 +1,7 @@
 @url_dev_product=http://localhost:3884/v1/api/product
 @x-api-key=0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
-@authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NjgxNjYyLCJleHAiOjE2OTY3NjgwNjJ9.g5vKSMpFdWt7STMeHGTZiUR68GSBeAv8myEh42oqoyE
-@x-client-id=651eff2921a525fef8bc71ec
+@authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY5NTA4LCJleHAiOjE2OTY4NTU5MDh9.LJ1XHzF89AMtgwLQvjxuoA8vwbouHCnldxr1RpOtbOE
+@x-client-id=65228e515906a78ea8ee216f
 
 
 
@@ -9,48 +9,48 @@
 POST {{url_dev_product}}
 Content-Type: application/json
 x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NjgxNjYyLCJleHAiOjE2OTY3NjgwNjJ9.g5vKSMpFdWt7STMeHGTZiUR68GSBeAv8myEh42oqoyE
-x-client-id: 651eff2921a525fef8bc71ec
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY5NTA4LCJleHAiOjE2OTY4NTU5MDh9.LJ1XHzF89AMtgwLQvjxuoA8vwbouHCnldxr1RpOtbOE
+x-client-id: 65228e515906a78ea8ee216f
 
 {
-    "product_name": "Pants Jeans",
-    "product_description": "Description 1",
-    "product_price": 100.00,
-    "product_shop": "651eff2921a525fef8bc71ec",
+    "product_name": "Apple iPhone 15 Pro Max",
+    "product_description": "Thông số kỹ thuật",
+    "product_price": 28999000,
+    "product_shop": "65228e515906a78ea8ee216f",
     "product_quantity": 10,
-    "product_type": "Clothing",
+    "product_type": "Electronic",
     "product_thumb":"product_thumb.jpg",
     "product_attributes":{
-        "brand":"Levis",
-        "size":"M",
-        "material":"Cotton"
+        "manufacturer": "Apple",
+        "model": "iphone15-2023",
+        "color": "Titan Black"
     }
 }
 
 ### Publish product by shop
-PATCH  {{url_dev_product}}/publish/65214ef2c67cff2b2bbdcf68
-x-api-key: {{x-api-key}}
-authorization: {{authorization}}
-x-client-id: {{x-client-id}}
+PATCH  {{url_dev_product}}/publish/6522a881617ac529f6aff331
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY5NTA4LCJleHAiOjE2OTY4NTU5MDh9.LJ1XHzF89AMtgwLQvjxuoA8vwbouHCnldxr1RpOtbOE
+x-client-id: 65228e515906a78ea8ee216f
 
 ### Unpublish product by shop
-PATCH  {{url_dev_product}}/unpublish/65214ef2c67cff2b2bbdcf68
-x-api-key: {{x-api-key}}
-authorization: {{authorization}}
-x-client-id: {{x-client-id}}
+PATCH  {{url_dev_product}}/unpublish/6522a65a617ac529f6aff2cb
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY5NTA4LCJleHAiOjE2OTY4NTU5MDh9.LJ1XHzF89AMtgwLQvjxuoA8vwbouHCnldxr1RpOtbOE
+x-client-id: 65228e515906a78ea8ee216f
 
 ### Gett all draft products
 GET  {{url_dev_product}}/drafts
 x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NjgxNjYyLCJleHAiOjE2OTY3NjgwNjJ9.g5vKSMpFdWt7STMeHGTZiUR68GSBeAv8myEh42oqoyE
-x-client-id: 651eff2921a525fef8bc71ec
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY5NTA4LCJleHAiOjE2OTY4NTU5MDh9.LJ1XHzF89AMtgwLQvjxuoA8vwbouHCnldxr1RpOtbOE
+x-client-id: 65228e515906a78ea8ee216f
 
 ### Gett all published products
 GET  {{url_dev_product}}/published
-x-api-key: {{x-api-key}}
-authorization: {{authorization}}
-x-client-id: {{x-client-id}}
+x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY5NTA4LCJleHAiOjE2OTY4NTU5MDh9.LJ1XHzF89AMtgwLQvjxuoA8vwbouHCnldxr1RpOtbOE
+x-client-id: 65228e515906a78ea8ee216f
 
 ### Search products
-GET  {{url_dev_product}}/search?q=Pants
+GET  {{url_dev_product}}/search?q=max
 x-api-key: {{x-api-key}}

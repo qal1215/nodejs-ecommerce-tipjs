@@ -2,16 +2,6 @@
 
 const ProductRepository = require("../../repositories/product.repo");
 
-class QueryRequest {
-  constructor({ query, limit, offset, sort, select }) {
-    this.query = query;
-    this.limit = limit;
-    this.offset = offset;
-    this.sort = sort;
-    this.select = select;
-  }
-}
-
 class ProductFactory {
   static productRegistry = {};
 

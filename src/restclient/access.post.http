@@ -1,4 +1,6 @@
 @url_dev=http://localhost:3884/v1/api
+@x-api-key=0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+
 
 GET {{url_dev}}/getApiKey
 
@@ -9,40 +11,45 @@ x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84
 
 {
     "name":"Concung",
-    "email":"concung2@example.com",
+    "email":"concung5@example.com",
     "password":"12345678asdasd"
 }
-
 
 ### login
 POST {{url_dev}}/shop/login
 Content-Type: application/json
-x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
+x-api-key: {{x-api-key}}
 
 {
-    "email":"concung2@example.com",
+    "email":"concung5@example.com",
     "password":"12345678asdasd"
 }
 
 ### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDM3MzA5LCJleHAiOjE2OTY2MTAxMDl9.HsLlMSioNwQl-pF1LKBy3Al7GtlciOAFAf6RX_HpLKs
 ### logout
+@x-client-id=65228e515906a78ea8ee216f
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY0MDYxLCJleHAiOjE2OTY4NTA0NjF9.WOL4yFRaRo7ef4ZLtDocDlBIBVj7w26ndQ4AFIaUTCU
+@refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY0MDYxLCJleHAiOjE2OTczNjg4NjF9.R1KGGPTK_tOWs3fdy4qklUhaGz2eVo3sakO6r6vN7iw
 POST {{url_dev}}/shop/logout
 Content-Type: application/json
-x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
-x-client-id: 651996729a2e58d24f4c0220
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDQ2MzE2LCJleHAiOjE2OTY0NDYzNzZ9.uLF32fBIWd5UzSO0oaOq5cPCw8cvpz_4I4mPI4Q1w8A
+x-api-key: {{x-api-key}}
+x-client-id: {{x-client-id}}
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY0MDYxLCJleHAiOjE2OTY4NTA0NjF9.WOL4yFRaRo7ef4ZLtDocDlBIBVj7w26ndQ4AFIaUTCU
 
 {
-"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTE5OTY3MjlhMmU1OGQyNGY0YzAyMjAiLCJlbWFpbCI6ImNvbmN1bmcxQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NDQ2Mzg5LCJleHAiOjE2OTcwNTExODl9.EwqUY8cqeARoHqssWc49NGxqF9qLlSdIYb57QC-D-Go"
-    }
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY0MDYxLCJleHAiOjE2OTczNjg4NjF9.R1KGGPTK_tOWs3fdy4qklUhaGz2eVo3sakO6r6vN7iw"
+}
 
 ### refresh token
+@x-client-id=65228e515906a78ea8ee216f
+@accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY0MDYxLCJleHAiOjE2OTY4NTA0NjF9.WOL4yFRaRo7ef4ZLtDocDlBIBVj7w26ndQ4AFIaUTCU
+@refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTIyOGU1MTU5MDZhNzhlYThlZTIxNmYiLCJlbWFpbCI6ImNvbmN1bmc1QGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NzY0MDYxLCJleHAiOjE2OTczNjg4NjF9.R1KGGPTK_tOWs3fdy4qklUhaGz2eVo3sakO6r6vN7iw
 POST {{url_dev}}/shop/refresh-token
 Content-Type: application/json
-x-api-key: 0126a6146114cf42d15dc64ca3bfe4bb6dcb50847f238310ac85d9a264dbbdd2d4d84f9ef7dc050f6d8a13af0cf87e4771ef7df460c66725ac262a712f21c7f2
-x-client-id: 651eff2921a525fef8bc71ec
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NTMzNTA3LCJleHAiOjE2OTY2MTk5MDd9.WDbhROF9b19OkHMbjsHPvpWJGNWLA2bk2i1Fd9douDo
+x-api-key: {{x-api-key}}
+x-client-id: 65228e515906a78ea8ee216f
+authorization: {{accessToken}}
 
 {
-"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFlZmYyOTIxYTUyNWZlZjhiYzcxZWMiLCJlbWFpbCI6ImNvbmN1bmcyQGV4YW1wbGUuY29tIiwiaWF0IjoxNjk2NTMzNTA3LCJleHAiOjE2OTcxMzgzMDd9.ali4aA1pb-gfa7-Gv7sUOofOPOpeBlEv03YaaqRexW8"
+"refreshToken": "{{refreshToken}}"
 }
