@@ -16,7 +16,12 @@ const getPrivateAndPublicKey = () => {
   };
 };
 
+const getSelectData = (select = []) => {
+  return Object.fromEntries(select.map((item) => [item, 1]));
+};
+
 module.exports = {
   getInfoData,
   getPrivateAndPublicKey,
+  getSelectData,
 };

@@ -1,6 +1,6 @@
 "use strict";
 
-const { SuccessResponse } = require("../core/success.response");
+const { SuccessResponse, OK } = require("../core/success.response");
 const ProductFactory = require("../services/product/productFactory");
 
 class ProductController {
@@ -69,6 +69,15 @@ class ProductController {
         products: await ProductFactory.searchPublishedProducts({
           query: req.query.q,
         }),
+      },
+    }).send(res);
+  };
+
+  getAllProductsPublic = async (req, res, next) => {
+    new SuccessResponse({
+      message: "All published products fetched successfully",
+      metaData: {
+        products: await ProductFactory.findAllProducts(req.query),
       },
     }).send(res);
   };

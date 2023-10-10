@@ -16,6 +16,7 @@ const router = express.Router();
  *
  */
 router.get("/search", asyncHandler(productController.searchPublishedProducts));
+router.get("/", asyncHandler(productController.getAllProductsPublic));
 
 // authentication
 router.use(authentication);

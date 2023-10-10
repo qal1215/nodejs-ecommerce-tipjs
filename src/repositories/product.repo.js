@@ -2,6 +2,8 @@
 
 const { Types } = require("mongoose");
 const { product, electronic, clothing } = require("../models/product.model");
+const { get } = require("lodash");
+const { getSelectData } = require("../utils");
 
 class ProductRepository {
   static async queryProduct({
@@ -52,6 +54,20 @@ class ProductRepository {
       query: { ...query, isPublished: true },
       limit,
       offset,
+    });
+  }
+
+  static async findAllProducts({ limit, sort, page, filter, select }) {
+    const offset = (page - 1) * limit;
+    const sortBy = sort === "ctime" ? { _id: -1 } : { _id: 1 };
+    const query = { ...filter };
+
+    return await this.queryProduct({
+      query,
+      limit,
+      offset,
+      sort: sortBy,
+      select: getSelectData(select),
     });
   }
 
