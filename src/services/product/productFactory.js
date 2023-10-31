@@ -16,6 +16,17 @@ class ProductFactory {
     return new productClass(product).createProduct();
   }
 
+  static async updateProduct(product_type, product, productId) {
+    const productClass = this.productRegistry[product_type];
+
+    if (!productClass)
+      throw new BadRequestError(
+        `Product type ${product_type} is not supported`
+      );
+
+    return new productClass(product).updateProduct(productId);
+  }
+
   //#region UPDATE - DELETE
   static async publishProductByShop({ product_shop, product_id }) {
     return await ProductRepository.publishProduct({

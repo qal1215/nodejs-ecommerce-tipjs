@@ -100,6 +100,17 @@ class ProductRepository {
       .lean()
       .exec();
   }
+
+  static async updateProductById({
+    productId,
+    dataUpdated,
+    model,
+    isNew = true,
+  }) {
+    return model.findByIdAndUpdate(productId, dataUpdated, {
+      new: isNew,
+    });
+  }
 }
 
 module.exports = ProductRepository;

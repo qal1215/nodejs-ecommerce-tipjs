@@ -46,6 +46,7 @@ router.get(
  */
 router.post("/", asyncHandler(productController.createProduct));
 
+router.patch("/:id", asyncHandler(productController.updateProduct));
 /**
  * @description: Publish a product
  * @method: PATCH

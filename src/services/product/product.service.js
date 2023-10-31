@@ -2,6 +2,11 @@
 
 const { BadRequestError } = require("../../core/error.response");
 const { product, clothing, electronic } = require("../../models/product.model");
+const ProductRepository = require("../../repositories/product.repo");
+const {
+  removeUndefinedFields,
+  updateNestedObjectParse,
+} = require("../../utils");
 
 class Product {
   constructor({
@@ -27,8 +32,23 @@ class Product {
   }
 
   // create product
-  async createProduct(product_id) {
-    return await product.create({ ...this, _id: product_id });
+  async createProduct(productId) {
+    return await product.create({ ...this, _id: productId });
+  }
+
+  async updateProduct(productId, dataUpdated) {
+    const isProductExist = await product.findOne({
+      _id: productId,
+      product_shop: this.product_shop,
+    });
+
+    if (!isProductExist) throw new BadRequestError("Product not found");
+
+    return await ProductRepository.updateProductById({
+      productId,
+      dataUpdated,
+      model: product,
+    });
   }
 }
 
@@ -47,6 +67,31 @@ class Clothing extends Product {
 
     return newProduct;
   }
+
+  async updateProduct(productId) {
+    /**
+     * 1. Remove attributes with null or undefined value
+     *
+     */
+    const objectParams = removeUndefinedFields(this);
+
+    if (objectParams.product_attributes) {
+      const { product_attributes } = objectParams;
+
+      // Update child data
+      await ProductRepository.updateProductById({
+        productId,
+        dataUpdated: updateNestedObjectParse(product_attributes),
+        model: clothing,
+      });
+    }
+
+    const updateProduct = await super.updateProduct(
+      productId,
+      updateNestedObjectParse(objectParams)
+    );
+    return updateProduct;
+  }
 }
 
 class Electronic extends Product {
@@ -62,6 +107,28 @@ class Electronic extends Product {
     if (!newProduct) throw new BadRequestError("Product could not be created");
 
     return newProduct;
+  }
+
+  async updateProduct(productId) {
+    /**
+     * 1. Remove attributes with null or undefined value
+     *
+     */
+    console.log("[1]::", this);
+    const objectParams = updateNestedObjectParse(this);
+    console.log("[2]::", objectParams);
+
+    if (objectParams.product_attributes) {
+      // Update child data
+      await ProductRepository.updateProductById({
+        productId,
+        dataUpdated: objectParams.product_attributes,
+        model: electronic,
+      });
+    }
+
+    const updateProduct = await super.updateProduct(productId, objectParams);
+    return updateProduct;
   }
 }
 
