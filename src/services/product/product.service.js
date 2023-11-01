@@ -2,6 +2,7 @@
 
 const { BadRequestError } = require("../../core/error.response");
 const { product, clothing, electronic } = require("../../models/product.model");
+const InventoryRepository = require("../../repositories/inventory.repo");
 const ProductRepository = require("../../repositories/product.repo");
 const {
   removeUndefinedFields,
@@ -33,7 +34,16 @@ class Product {
 
   // create product
   async createProduct(productId) {
-    return await product.create({ ...this, _id: productId });
+    const newProduct = await product.create({ ...this, _id: productId });
+    if (newProduct) {
+      await InventoryRepository.insertInventory({
+        productId: newProduct._id,
+        shopId: this.product_shop,
+        stock: this.product_quantity,
+      });
+    }
+
+    return newProduct;
   }
 
   async updateProduct(productId, dataUpdated) {

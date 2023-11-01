@@ -25,7 +25,6 @@ const removeUndefinedFields = (object) => {
 };
 
 const updateNestedObjectParse = (object) => {
-  console.log("[1]::", object);
   const final = {};
   Object.keys(object).forEach((key) => {
     const value = object[key];
@@ -40,8 +39,6 @@ const updateNestedObjectParse = (object) => {
       final[key] = value;
     }
   });
-
-  console.log("[2]::", final);
   return final;
 };
 
